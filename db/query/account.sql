@@ -14,7 +14,7 @@ WHERE id = $1 LIMIT 1;
 -- name: GetAccountForUpdate :one
 SELECT * FROM accounts
 WHERE id = $1 LIMIT 1
-FOR NO KEY UPDATE;
+FOR NO KEY UPDATE; -- lock the row for update don't update the Foreign Key () REFERENCES ()
 
 -- name: ListAccounts :many
 SELECT * FROM accounts
@@ -31,8 +31,8 @@ RETURNING *;
 
 -- name: AddAccountBalance :one
 UPDATE accounts
-SET balance = balance + $2
-WHERE id = $1
+SET balance = balance + sqlc.arg(amount)
+WHERE id = sqlc.arg(id)
 RETURNING *;
 
 -- name: DeleteAccount :exec

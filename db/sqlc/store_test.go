@@ -2,37 +2,32 @@ package db
 
 import (
 	"context"
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/require"
 )
 
-
-func TestTransferTx(t *testing.T){
+func TestTransferTx(t *testing.T) {
 	store := NewStore(testDB)
 
 	account1 := createRandomAccount(t)
 	account2 := createRandomAccount(t)
-	fmt.Println(">> Before:", account1.Balance, account2.Balance)
-	
 
 	// run n concurrent transfer transactions
 	n := 2
 	amount := int64(10)
 
-	errs := make(chan error) // buffered channel for errors to avoid blocking
+	errs := make(chan error)               // buffered channel for errors to avoid blocking
 	results := make(chan TransferTxResult) // buffered channel for results to avoid blocking
 
 	for i := 0; i < n; i++ {
 		// run each transfer in a separate goroutine
-		txName := fmt.Sprintf("tx %d", i + 1)
 		go func() {
-			ctx := context.WithValue(context.Background(), txKey, txName) // create a context with a value
+			ctx := context.Background() // create a context with a value
 			result, err := store.TransferTx(ctx, TransferTxParams{
 				FromAccountID: account1.ID,
-				ToAccountID: account2.ID,
-				Amount: amount,
+				ToAccountID:   account2.ID,
+				Amount:        amount,
 			})
 			errs <- err
 			results <- result
@@ -43,10 +38,10 @@ func TestTransferTx(t *testing.T){
 	// check results
 	existed := make(map[int64]bool) // map to check if k is in the map
 	for i := 0; i < n; i++ {
-		err := <- errs
+		err := <-errs
 		require.NoError(t, err)
 
-		result := <- results
+		result := <-results
 		require.NotEmpty(t, result)
 
 		// check transfer
@@ -68,7 +63,7 @@ func TestTransferTx(t *testing.T){
 		require.Equal(t, -amount, fromEntry.Amount)
 		require.NotZero(t, fromEntry.ID)
 		require.NotZero(t, fromEntry.CreatedAt)
-		
+
 		_, err = store.GetEntry(context.Background(), fromEntry.ID)
 		require.NoError(t, err)
 
@@ -93,16 +88,15 @@ func TestTransferTx(t *testing.T){
 		require.Equal(t, account2.ID, toAccount.ID)
 
 		// check accounts' balance
-		fmt.Println(">> Tx:", fromAccount.Balance, toAccount.Balance)
 		diff1 := account1.Balance - fromAccount.Balance
 		diff2 := toAccount.Balance - account2.Balance
 		require.Equal(t, diff1, diff2)
 		require.True(t, diff1 > 0)
-		require.True(t, diff1 % amount == 0) // amount should be a factor of the difference amount, 2 * amount, 3 * amount, etc.
+		require.True(t, diff1%amount == 0) // amount should be a factor of the difference amount, 2 * amount, 3 * amount, etc.
 
 		k := diff1 / amount
 		require.True(t, k >= 1 && k <= int64(n)) // k should be between 1 and n
-		require.NotContains(t, existed, k) // k should not be in the map
+		require.NotContains(t, existed, k)       // k should not be in the map
 		existed[k] = true
 
 	}
@@ -114,7 +108,6 @@ func TestTransferTx(t *testing.T){
 	updatedAccount2, err := testQueries.GetAccount(context.Background(), account2.ID)
 	require.NoError(t, err)
 
-	fmt.Println(">> After:", updatedAccount1.Balance, updatedAccount2.Balance)
-	require.Equal(t, account1.Balance - int64(n) * amount, updatedAccount1.Balance)
-	require.Equal(t, account2.Balance + int64(n) * amount, updatedAccount2.Balance)
+	require.Equal(t, account1.Balance-int64(n)*amount, updatedAccount1.Balance)
+	require.Equal(t, account2.Balance+int64(n)*amount, updatedAccount2.Balance)
 }
