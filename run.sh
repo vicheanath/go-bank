@@ -7,4 +7,4 @@ export CGO_ENABLED=0
 
 go build -v -o dist/go-bank
 
-docker build -t go-bank .
+docker build -t go-bank
