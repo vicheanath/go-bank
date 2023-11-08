@@ -2,7 +2,6 @@
 
 [![Run unit tests](https://github.com/vicheanath/go-bank/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/vicheanath/go-bank/actions/workflows/ci.yml)
 
-
 ## About
 
 This is a simple bank API made with Go and PostgreSQL.
