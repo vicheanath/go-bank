@@ -83,13 +83,11 @@ func TestDeleteAccount(t *testing.T) {
 
 func TestListAccount(t *testing.T) {
 
-	var lastAccount Account
 	for i := 0; i < 10; i++ {
-		lastAccount = createRandomAccount(t, "vichea")
+		createRandomAccount(t)
 	}
 
 	arg := ListAccountsParams{
-		Owner:  lastAccount.Owner,
 		Limit:  5,
 		Offset: 0,
 	}

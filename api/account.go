@@ -1,6 +1,7 @@
 package api
 
 import (
+	"database/sql"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -47,6 +48,11 @@ func (server *Server) getAccount(ctx *gin.Context) {
 	}
 	account, err := server.store.GetAccount(ctx, req.ID)
 	if err != nil {
+		if err == sql.ErrNoRows {
+			ctx.JSON(http.StatusNotFound, errorResponse(err))
+			return
+		}
+
 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
 		return
 	}
@@ -54,11 +60,10 @@ func (server *Server) getAccount(ctx *gin.Context) {
 }
 
 type listAccountRequest struct {
-	PageID   int32 `form:"page_id"`
-	PageSize int32 `form:"page_size"`
+	PageID   int32 `form:"page_id" binding:"required,min=1"`
+	PageSize int32 `form:"page_size" binding:"required,min=5,max=10"`
 }
 
-// listAccounts returns the accounts with the specified paging constraints.
 func (server *Server) listAccounts(ctx *gin.Context) {
 	var req listAccountRequest
 	if err := ctx.ShouldBindQuery(&req); err != nil {
@@ -66,25 +71,16 @@ func (server *Server) listAccounts(ctx *gin.Context) {
 		return
 	}
 
-	// check if the page size and page id are valid
-	if req.PageID < 1 {
-		req.PageID = 1
-	}
-	if req.PageSize < 5 {
-		req.PageSize = 5
-	} else if req.PageSize > 10 {
-		req.PageSize = 10
-	}
-
-
 	arg := db.ListAccountsParams{
 		Limit:  req.PageSize,
 		Offset: (req.PageID - 1) * req.PageSize,
 	}
+
 	accounts, err := server.store.ListAccounts(ctx, arg)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
 		return
 	}
+
 	ctx.JSON(http.StatusOK, accounts)
 }

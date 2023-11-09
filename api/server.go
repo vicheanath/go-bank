@@ -5,7 +5,6 @@ import (
 	db "github.com/vicheanath/go-bank/db/sqlc"
 )
 
-
 // Server serves HTTP requests for our banking service.
 type Server struct {
 	store  *db.Store
@@ -16,6 +15,8 @@ type Server struct {
 func NewServer(store *db.Store) *Server {
 	server := &Server{store: store}
 	router := gin.Default()
+	router.ForwardedByClientIP = true
+	router.SetTrustedProxies([]string{"127.0.0.1", "192.168.1.2", "10.0.0.0/8"})
 
 	router.POST("/accounts", server.createAccount)
 	router.GET("/accounts/:id", server.getAccount)
@@ -24,6 +25,7 @@ func NewServer(store *db.Store) *Server {
 	server.router = router
 	return server
 }
+
 // Start runs the HTTP server on a specific address.
 func (server *Server) Start(address string) error {
 	return server.router.Run(address)
