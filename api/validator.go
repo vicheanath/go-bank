@@ -5,7 +5,6 @@ import (
 	"github.com/vicheanath/go-bank/util"
 )
 
-
 var validCurrency validator.Func = func(fl validator.FieldLevel) bool {
 	if currency, ok := fl.Field().Interface().(string); ok {
 		return util.IsSupportedCurrency(currency)
