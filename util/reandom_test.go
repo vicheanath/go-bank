@@ -26,7 +26,7 @@ func TestRandomCurrency(t *testing.T) {
 	currency := RandomCurrency()
 	require.NotEmpty(t, currency)
 	require.Equal(t, 3, len(currency))
-	currencies := []string{"USD", "KHR", "THB"}
+	currencies := []string{USD, KHR ,THB}
 	require.Contains(t, currencies, currency)
 }
 
