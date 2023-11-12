@@ -10,7 +10,6 @@ import (
 	"github.com/vicheanath/go-bank/util"
 )
 
-
 var testQueries *Queries
 var testDB *sql.DB
 

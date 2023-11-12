@@ -10,14 +10,12 @@ import (
 	"github.com/vicheanath/go-bank/util"
 )
 
-func createRandomAccount(t *testing.T, owner ...string) Account {
+func createRandomAccount(t *testing.T) Account {
 
-	if len(owner) < 1 {
-		owner = append(owner, util.RandomOwner())
-	}
+	user := createRandomUser(t)
 
 	arg := CreateAccountParams{
-		Owner:    owner[0],
+		Owner:    user.Username,
 		Balance:  util.RandomMoney(),
 		Currency: util.RandomCurrency(),
 	}
