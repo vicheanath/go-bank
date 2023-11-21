@@ -1,13 +1,29 @@
-# go-bank
+# Golang Core banking
+
+Best places to start contributing and learn golang 
 
 [![Run unit tests](https://github.com/vicheanath/go-bank/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/vicheanath/go-bank/actions/workflows/ci.yml)
 
+## Feature
+- :x: Authentication
+- :heavy_check_mark:Transfer
+- :heavy_check_mark: Account
+- :heavy_check_mark: Unit Test
+- :x: Front end React
+- :x: React Native Mobile App
+
 ## About
 
-This is a simple bank API made with Go and PostgreSQL.
+A core banking writer in Golang
 
 ## How to run
 
-### Docker
+```sh
+make server
+```
 
-To run the application with docker, you need to have docker and docker-compose installed on your machine.
+## Contributors
+
+<a href="https://github.com/vicheanath/go-bank/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=vicheanath/go-bank" />
+</a>
