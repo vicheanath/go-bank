@@ -11,7 +11,7 @@ require (
 	github.com/o1egl/paseto v1.0.0
 	github.com/spf13/viper v1.17.0
 	github.com/stretchr/testify v1.8.4
-	go.uber.org/mock v0.3.0
+	go.uber.org/mock v0.4.0
 	golang.org/x/crypto v0.17.0
 )
 
