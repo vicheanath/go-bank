@@ -1,0 +1,416 @@
+.container {
+  min-height: 100vh;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 48px;
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  width: 100%;
+  box-sizing: border-box;
+  gap: 32px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #1e293b;
+  font-weight: 600;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.logoIcon {
+  width: 20px;
+  height: 20px;
+  color: #6366f1;
+}
+
+.logoText {
+  color: #1e293b;
+}
+
+.nav {
+  display: flex;
+  gap: 48px;
+  flex: 1;
+  justify-content: center;
+  max-width: none;
+}
+
+.navLink {
+  color: #64748b;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.navLink:hover {
+  color: #1e293b;
+}
+
+.headerActions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.signUpBtn {
+  background: transparent;
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.signUpBtn:hover {
+  background: #f8fafc;
+  color: #1e293b;
+}
+
+.signInBtn {
+  background: #1e293b;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.signInBtn:hover {
+  background: #334155;
+}
+
+.loginContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 24px;
+  position: relative;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 20px;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.closeBtn:hover {
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+.loginContent {
+  background: white;
+  padding: 48px 40px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.logoSection {
+  margin-bottom: 32px;
+}
+
+.loginLogo {
+  width: 64px;
+  height: 64px;
+  background: #6366f1;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.loginLogoIcon {
+  width: 32px;
+  height: 32px;
+  color: white;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 32px;
+  letter-spacing: -0.025em;
+}
+
+.socialButtons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  justify-content: center;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.socialBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  background: white;
+}
+
+.socialBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.socialIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.googleBtn {
+  background: white;
+}
+
+.appleBtn {
+  background: white;
+}
+
+.facebookBtn {
+  background: #1877f2;
+}
+
+.facebookBtn:hover {
+  background: #166fe5;
+}
+
+.form {
+  margin-bottom: 24px;
+  margin-top: 24px;
+}
+
+.inputGroup {
+  margin-bottom: 16px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  background: #fafafa;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #6366f1;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.input::placeholder {
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.signInButton {
+  width: 100%;
+  background: #1e293b;
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.signInButton:hover {
+  background: #334155;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footerLink {
+  color: #3b82f6;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 400;
+  transition: color 0.2s;
+}
+
+.footerLink:hover {
+  color: #2563eb;
+}
+
+.copyright {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .nav {
+    gap: 32px;
+  }
+  
+  .header {
+    padding: 16px 32px;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .nav {
+    gap: 24px;
+  }
+  
+  .header {
+    padding: 16px 24px;
+    gap: 16px;
+  }
+  
+  .navLink {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 900px) {
+  .header {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .logo {
+    order: 1;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  
+  .nav {
+    order: 2;
+    flex: none;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  
+  .headerActions {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .loginContent {
+    padding: 32px 24px;
+    margin: 16px;
+  }
+
+  .socialButtons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav {
+    gap: 16px;
+  }
+  
+  .navLink {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0;
+  }
+
+  .loginContainer {
+    padding: 1rem;
+  }
+
+  .loginContent {
+    padding: 1.5rem 1rem;
+    margin: 0.5rem;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .logo {
+    width: auto;
+    margin-bottom: 0;
+  }
+
+  .headerActions {
+    width: auto;
+    justify-content: flex-end;
+  }
+  
+  .header {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+}
